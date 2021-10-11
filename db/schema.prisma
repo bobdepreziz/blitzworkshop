@@ -63,3 +63,22 @@ model Token {
 // enum TokenType {
 //   RESET_PASSWORD
 // }
+
+model BarberShop {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
+
+model Appointments {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  package   Package  @relation(fields: [packageId], references: [id])
+  packageId Int
+}
+
+model Package {
+  id           Int            @id @default(autoincrement())
+  title        String         @unique
+  price        Float
+  Appointments Appointments[]
+}
